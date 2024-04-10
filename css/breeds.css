@@ -1,0 +1,142 @@
+/* Reset some basic elements */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and borders in elements' total width and height */
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1; /* This makes the main content grow to fill the space, pushing the footer down */
+}
+
+.page-header {
+    background-color: #A8DADC; /* Or any color you prefer */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav {
+    background: #333;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav::after {
+    content: '';
+    flex: 1;
+}
+
+nav .logo {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    flex: 1;
+}
+
+nav .nav-links {
+    flex: 2; /* Gives the nav-links double the space to spread out, centering them */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+.breeds-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.breed {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.breed img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.breed h2 {
+    margin: 20px 0 10px;
+}
+
+.breed p {
+    padding: 0 10px;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+button {
+    background-color: #A8DADC; /* Green background */
+    color: white; /* White text */
+    padding: 15px 32px; /* Padding inside the button */
+    text-align: center; /* Center-aligned text */
+    text-decoration: none; /* No underline on the text */
+    display: inline-block; /* Allows setting dimensions */
+    font-size: 16px; /* Text size */
+    margin: 4px 2px; /* Margin around the button */
+    cursor: pointer; /* Cursor changes to a pointer on hover */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    transition-duration: 0.4s; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #A8DADC; /* Darker shade of green on hover */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .breeds-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}

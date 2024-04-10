@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Our Mission</title>
+    <link rel="stylesheet" href="css/support.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=AZx034GsXxTwFDizxT9lyr-Tp9ksOf_ImGem8t_Q_oA-nVSi0GVeRdqDuDXIEmTDP8gvcJzVRt2ePAoW&currency=USD"></script>
+</head>
+<body>
+    <div class="support-container">
+        <h1>Thank You for Considering Supporting Us!</h1>
+        <p>Your support means the world to us. With your help, we can continue to provide and expand our comprehensive resources on chicken keeping. Every contribution, no matter how small, helps us maintain and grow this community.</p>
+        <p>Whether you're contributing as a one-time donor or considering becoming a regular supporter, your generosity ensures the ongoing quality and availability of our content.</p>
+        
+        <div id="paypal-button-container"></div>
+    </div>
+
+    <script>
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'donate',
+          
+        },
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '5.00' // This amount can be dynamically set based on user input
+              }
+            }],
+            application_context: {
+              shipping_preference: 'NO_SHIPPING'
+            }
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Donation completed by ' + details.payer.name.given_name);
+            // Here you could also redirect the donor to a thank-you page or handle the response differently
+          });
+        }
+      }).render('#paypal-button-container');
+    </script>
+</body>
+</html>
