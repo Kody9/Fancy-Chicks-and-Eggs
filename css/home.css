@@ -38,7 +38,7 @@ nav {
     color: #fff;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; /* This ensures that the logo and the menu are on opposite ends */
     padding: 10px 20px;
     position: sticky;
     top: 0;
@@ -47,15 +47,17 @@ nav {
 
 nav::after {
     content: '';
-    flex: 1;
+    flex: 0.35;
 }
 
 nav .logo {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.5rem;
-    flex: 1;
+    font-size: 1.5rem; /* You can adjust this size for smaller screens using a media query */
+    white-space: nowrap; /* Prevents the logo from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 nav .nav-links {
@@ -111,7 +113,6 @@ footer {
     flex-shrink: 0;
 }
 
-/* Additional sections */
 .features, .testimonials, .cta {
     padding: 50px 0;
 }
@@ -132,8 +133,9 @@ footer {
     padding: 20px;
     margin: 10px;
     border-radius: 5px;
-    width: calc(33.333% - 20px);
+    width: calc(33.333% - 20px); /* Adjust width for smaller screens */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease; /* Smooth transition for width */
 }
 
 .feature h3 {
@@ -275,6 +277,7 @@ footer {
 
 .hamburger-menu {
     display: none; /* Hidden by default, shown in the media query below */
+    cursor: pointer;
 }
 
 .hamburger-menu .bar {
@@ -285,35 +288,48 @@ footer {
     transition: 0.3s;
 }
 
-/* Styles for when the hamburger menu is visible */
 @media (max-width: 768px) {
-    .nav-links,
-    .nav-links a {
-        display: none; /* Hide the links initially */
+    .feature-list {
+        flex-direction: column;
+    }
+
+    .feature {
+        width: 100%; 
+        margin: 10px 0; 
     }
 
     .hamburger-menu {
-        display: block; /* Show the hamburger icon */
-        position: absolute; /* Position it at the top right */
-        top: 10px; /* Adjust these values as needed */
+        display: block;
+        position: absolute;
+        top: 10px; 
         right: 20px;
-        z-index: 1001; /* Ensure it's above other content */
+        z-index: 1001; 
     }
 
-    .nav-active .nav-links {
-        display: flex; /* Show the nav links when active */
-        flex-direction: column;
+    .nav-links {
         position: fixed;
         top: 0;
-        right: 0;
+        left: 0;
         height: 100vh;
-        width: 100%; /* Full width */
+        width: 100%;
         background-color: #333;
+        overflow-y: auto; /* In case of more items */
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        justify-content: start;
-        padding-top: 60px; /* Adjust this value as needed */
-        transition: transform 0.3s ease-in-out;
-        transform: translateX(100%); /* Start off-screen to the right */
+        transform: translateX(-100%); /* Hide off-screen to the left */
+        transition: transform 0.3s ease;
+        z-index: 1; /* Lower z-index than the hamburger menu */
+    }
+
+    /* Style for your navigation links */
+    .nav-links a {
+        display: block;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        width: 100%; /* Full width links */
+        text-align: center;
     }
 
     .nav-active .nav-links a {

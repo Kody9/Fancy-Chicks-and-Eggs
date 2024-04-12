@@ -17,7 +17,29 @@
             <a href="contact.html">Contact</a>
             <a href="courses.html">Courses</a>
         </div>
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+        
+            hamburger.addEventListener('click', function () {
+                console.log('Hamburger clicked');
+                navLinks.classList.toggle('nav-active');
+            });
+        
+            // Close hamburger menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => navLinks.classList.remove('nav-active'));
+            });
+        });
+        </script>
 
     <header class="hero">
         <h1>Introduction to Chicken Keeping</h1>
